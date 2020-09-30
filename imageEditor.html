@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Image-Editor</title>
+    </head>
+    <body>
+        <h1> Update Css variable with <span class="h1">JS</span></h1>
+        <div class="controls">
+            <label for="spacing">Spacing:</label>
+            <input id="spacing" name="spacing" type="range" min="0" max="200" value="10" data-sizing="px">
+            <label for="blur">Blur:</label>
+            <input id="blur" name="blur" type="range" min="0" max="25" value="10" data-sizing="px">
+            <label for="base">Base:</label>
+            <input id="base" name="base" type="color" value="#fffdd0">
+            
+
+        </div>
+        <img src="https://www.denimxp.com/wp-content/uploads/2019/03/Men-Photoshoot-Poses-Style-White-Shirt-Combination-15.jpg">
+        <style>
+            :root {
+                --spacing: 10px;
+                --base: #fffdd0;
+                --blur: 10px;
+            }
+            body {
+                text-align: center;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 50px;
+                font-weight: 100;
+                background: burlywood;
+                color: whitesmoke;
+            }
+            h1 {
+                color : var(--base);
+            }
+            .controls {
+                margin-bottom: 50px;
+            }
+            input {
+                width: 100px;
+            }
+            img {
+                padding: var(--spacing);
+                filter: blur(var(--blur));
+                background: var(--base);
+                }
+        </style>
+
+        <script>
+            const inputs = document.querySelectorAll('.controls input');
+            function handelUpadte() {
+                const suffix = this.dataset.sizing || '';
+                document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            }
+            inputs.forEach(input => input.addEventListener('change', handelUpadte));
+            inputs.forEach(input => input.addEventListener('mousemove',handelUpadte));
+        </script>
+    </body>
+</html>
